@@ -10,3 +10,7 @@ Android 16
 
 ## Keystore path 
 ` /Users/conan/College/MobileGameDev/keystores/magerage-release.keystore `
+alias: magerage 
+validity: 50 yrs
+
+Profile name: com.conanquilty.arenasurvivor
