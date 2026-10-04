@@ -18,4 +18,12 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void OnResumePressed() => guard.SetPaused(false);
+
+    public GameObject settingsPanel;  
+ 
+    public void OpenSettings()  => settingsPanel.SetActive(true);
+    public void CloseSettings() => settingsPanel.SetActive(false);
+
+    public void SetTextScale(float factor) => TextScale.Factor = factor;
+
 }

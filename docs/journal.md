@@ -15,3 +15,15 @@ GC allocated in frame: 99B
 | Neighbour calls you, you hang up | Paused, game resumes only on Resume | Yes |
 | Screen off with the power button, back on | Paused | Yes |
 | Force stop from Settings, relaunch | Progress restored from the save | NA|
+
+## Profiler capture, 2026-10-04 (Pixel 6a, 60 fps target)
+
+- **Worst frame:** 576
+- **Main-thread time:** 19.38 ms (VSync-capped, about 16.7 ms)
+- **Tallest marker:** `PostLateUpdate.FinishFrameRendering`, 3.27 ms
+- **Top three by self time** (waits and Profiler overhead excluded):
+  1. `PostLateUpdate.FinishFrameRendering`, 3.27 ms
+  2. 
+  3. ___
+- **GC.Collect:** yes / no (if yes: frame ___, ___ ms)
+- **Notes:** most of the frame is idle (`WaitForTargetFPS`, about 14 ms), so real CPU work is only around 3 to 4 ms. GC allocation per frame is tiny (99 B).

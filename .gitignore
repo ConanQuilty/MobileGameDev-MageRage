@@ -113,3 +113,6 @@ InitTestScene*.unity*
 *.jks
 *.vscode
 *.DS_store
+
+# Let out releases
+!/releases/*apk

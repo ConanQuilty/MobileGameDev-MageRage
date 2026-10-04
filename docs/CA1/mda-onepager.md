@@ -55,9 +55,9 @@ People looking for a satisfying mow-em-down style game that one would play while
 - <Model you would use if you published, and what you will not do (no loot boxes, no timers that pressure spending, etc.)>
 
 ## Risks & cuts list (in the order they get cut)
-1. Extra spells
-2. 
-3. 
+1. Extra Levels
+2. Extra Enemies
+3. Extra Spells
 
 ## Scope lock
 - **Locked on:** Wed 16 Sep 2026

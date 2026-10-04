@@ -19,7 +19,11 @@ public class TapSwipeInput : MonoBehaviour
             if (t.phase != TouchPhase.Ended) continue;
             float px = swipeDp * Mathf.Max(Screen.dpi, 160f) / 160f;
             Vector2 d = t.screenPosition - t.startScreenPosition;
-            if (d.magnitude >= px) Debug.Log("Swipe " + d.normalized);
+            if (d.magnitude >= px) {
+                Debug.Log("Swipe " + d.normalized);
+                Haptics.Pulse();
+                Debug.Log("--Buzz--");
+                }
             else if (t.time - t.startTime < tapMax) Debug.Log("Tap");
         }
     }
