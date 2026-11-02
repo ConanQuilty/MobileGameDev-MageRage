@@ -8,12 +8,17 @@ public class PauseMenu : MonoBehaviour
 
     void OnEnable()  { LifecycleGuard.PausedChanged += Show; Show(LifecycleGuard.IsPaused); }
     void OnDisable() { LifecycleGuard.PausedChanged -= Show; }
-    void Show(bool paused) => panel.SetActive(paused);
+    void Show(bool paused) {
+        panel.SetActive(paused);
+        if (!paused) settingsPanel.SetActive(false);
+    }
 
     void Update()
     {
         var kb = Keyboard.current;
-        if (kb == null || !kb.escapeKey.wasPressedThisFrame) return;
+        if (kb == null || !kb.escapeKey.wasPressedThisFrame) return; //Was the escape key (back motion on mobile) pressed?
+
+        if (settingsPanel.activeSelf) { CloseSettings(); return; }
         guard.SetPaused(!LifecycleGuard.IsPaused);
     }
 
