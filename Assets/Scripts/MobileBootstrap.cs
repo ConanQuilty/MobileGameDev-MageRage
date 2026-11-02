@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class MobileBootstrap : MonoBehaviour
 {
     void Awake()
     {
@@ -14,6 +14,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Debug.Log($"[Boot] {SystemInfo.deviceModel} | " +
                   $"{SystemInfo.operatingSystem} | " +
                   $"{SystemInfo.graphicsDeviceType} | " +
-                  $"{Screen.width}x{Screen.height} @ {Screen.dpi} dpi");
+                  $"{Screen.width}x{Screen.height} @ {Screen.dpi} dpi | " +
+                  $"RAM {SystemInfo.systemMemorySize} MB | " +
+                  $"target {Application.targetFrameRate} fps");
     }
 }
