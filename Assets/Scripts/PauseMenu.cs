@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject panel;
-    [SerializeField] LifecycleGuard guard;
+    [SerializeField] GameObject settingsPanel;  
 
     void OnEnable()  { LifecycleGuard.PausedChanged += Show; Show(LifecycleGuard.IsPaused); }
     void OnDisable() { LifecycleGuard.PausedChanged -= Show; }
@@ -19,12 +19,11 @@ public class PauseMenu : MonoBehaviour
         if (kb == null || !kb.escapeKey.wasPressedThisFrame) return; //Was the escape key (back motion on mobile) pressed?
 
         if (settingsPanel.activeSelf) { CloseSettings(); return; }
-        guard.SetPaused(!LifecycleGuard.IsPaused);
+        LifecycleGuard.Instance.SetPaused(!LifecycleGuard.IsPaused);
     }
 
-    public void OnResumePressed() => guard.SetPaused(false);
+    public void OnResumePressed() => LifecycleGuard.Instance.SetPaused(false);
 
-    public GameObject settingsPanel;  
  
     public void OpenSettings()  => settingsPanel.SetActive(true);
     public void CloseSettings() => settingsPanel.SetActive(false);

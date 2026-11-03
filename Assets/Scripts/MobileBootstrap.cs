@@ -1,15 +1,13 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class MobileBootstrap : MonoBehaviour
 {
     void Awake()
     {
-        // Android defaults to 30 fps when targetFrameRate is -1.
-        Application.targetFrameRate = 60;
-        // vSyncCount is ignored on Android; keep it at 0.
+        Application.targetFrameRate = 60;            // Android defaults to 30 without this
         QualitySettings.vSyncCount = 0;
-        // Keep the screen on while the game is in the foreground.
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        DontDestroyOnLoad(gameObject);
 
         Debug.Log($"[Boot] {SystemInfo.deviceModel} | " +
                   $"{SystemInfo.operatingSystem} | " +
@@ -18,4 +16,6 @@ public class MobileBootstrap : MonoBehaviour
                   $"RAM {SystemInfo.systemMemorySize} MB | " +
                   $"target {Application.targetFrameRate} fps");
     }
+
+    async Awaitable Start() => await SceneManager.LoadSceneAsync("Menu");
 }

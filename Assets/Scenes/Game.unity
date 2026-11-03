@@ -236,7 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   panel: {fileID: 2128243380}
-  guard: {fileID: 2097364067}
   settingsPanel: {fileID: 1562341249}
 --- !u!1 &78990121
 GameObject:
@@ -4814,6 +4813,7 @@ GameObject:
   - component: {fileID: 1056387993}
   - component: {fileID: 1056387995}
   - component: {fileID: 1056387994}
+  - component: {fileID: 1056387996}
   m_Layer: 5
   m_Name: Debug Panel
   m_TagString: Untagged
@@ -4879,6 +4879,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056387992}
   m_CullTransparentMesh: 1
+--- !u!114 &1056387996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056387992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3840328dff784f4d946844f095767fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugOnly
 --- !u!1 &1092016072
 GameObject:
   m_ObjectHideFlags: 0
@@ -7001,11 +7013,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2097364064}
-  - component: {fileID: 2097364065}
   - component: {fileID: 2097364066}
-  - component: {fileID: 2097364067}
   - component: {fileID: 2097364068}
-  - component: {fileID: 2097364069}
   m_Layer: 0
   m_Name: BootStrap
   m_TagString: Untagged
@@ -7028,18 +7037,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2097364065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097364063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9aecb983dae45909e2a88190b0054f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
 --- !u!114 &2097364066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7055,18 +7052,6 @@ MonoBehaviour:
   swipeDp: 50
   tapMax: 0.3
   swipeMaxTime: 0.25
---- !u!114 &2097364067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097364063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13684a621c67d4fb694ef7f7bfd25bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LifecycleGuard
 --- !u!114 &2097364068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7080,18 +7065,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RenderScaleProbe
   lowScale: 0.5
---- !u!114 &2097364069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097364063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3135ca85ab55e4cf6a47a21febd3cdc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FrameTimeSampler
 --- !u!1 &2128243380
 GameObject:
   m_ObjectHideFlags: 0
