@@ -116,3 +116,5 @@ InitTestScene*.unity*
 
 # Let out releases
 !/releases/*apk
+
+*ProfilerCaptures/
