@@ -2,11 +2,13 @@
 I'm doing option 1: Arena Survivor Rougelite.
 It's 'core verb' is spell casting. I would cut adding extra spells if time runs thin.
 
+---
 *20/9/26*
 CPU main thread ms in a typical frame: 16.58ms
 SetPass calls: 3
 GC allocated in frame: 99B
 
+---
 *22/9/26*
 | Test | Expected | Result |
 |------|----------|--------|
@@ -28,7 +30,9 @@ GC allocated in frame: 99B
 - **GC.Collect:** yes / no (if yes: frame ___, ___ ms)
 - **Notes:** most of the frame is idle (`WaitForTargetFPS`, about 14 ms), so real CPU work is only around 3 to 4 ms. GC allocation per frame is tiny (99 B).
 
+---
 *2/11/26*
+
 Logging for future:
 2026/11/02 15:55:02.251 26318 26353 Info Unity [Boot] Google Pixel 6a | Android OS 16 / API-36 (CP1A.260405.005/15001963) | OpenGLES3 | 2400x1080 @ 420 dpi | RAM 5589 MB | target 60 fps
 
@@ -46,3 +50,12 @@ Logging for future:
   - full scale: avg 16.67 ms  p99 16.71 ms  cpu 16.67 ms  gpu 12.84 ms 
   - half scale: avg 16.67 ms  p99 16.74 ms  cpu 16.67 ms  gpu 12.75 ms
   - Likely Cpu bound no real gpu improvement after swapping to half scale
+
+Added debug menu for debug builds, allows stress testing through enemy spawning and changing render scale
+
+---
+*4/11/26* 
+- Created 3 enemy types Grunt, Runner & tank. All 3 use same sprite so colors are changed to tell apart for now.
+- Debug uses the Grunt enemy pool > Pushes it past the pool too
+
+- Coroutine hunt 0 hits; WaveTimer written with Awaitable from the start (template: lab WaveTimer).

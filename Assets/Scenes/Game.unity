@@ -5957,7 +5957,7 @@ Transform:
   m_GameObject: {fileID: 1215878375}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.38598, y: 0.18575, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7386,6 +7386,7 @@ GameObject:
   - component: {fileID: 2097364068}
   - component: {fileID: 2097364069}
   - component: {fileID: 2097364070}
+  - component: {fileID: 2097364071}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7448,7 +7449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaef9463513f489e8aaa789b6dc6c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  runLength: 60
+  runLength: 120
 --- !u!114 &2097364070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7462,6 +7463,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RunTimerHud
   label: {fileID: 246183028}
+--- !u!114 &2097364071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097364063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4196161ef367c4bd9bdb080b06091aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveTimer
+  waves:
+  - startTime: 0
+    rules:
+    - pool: {fileID: 1215878377}
+      interval: 1
+  - startTime: 45
+    rules:
+    - pool: {fileID: 1215878377}
+      interval: 0.7
+    - pool: {fileID: 1202630701}
+      interval: 2.5
+  - startTime: 90
+    rules:
+    - pool: {fileID: 1215878377}
+      interval: 0.5
+    - pool: {fileID: 1202630701}
+      interval: 15
+    - pool: {fileID: 460829360}
+      interval: 3.5
+  player: {fileID: 1452770959}
+  spawnRadius: 20
 --- !u!1 &2128243380
 GameObject:
   m_ObjectHideFlags: 0
