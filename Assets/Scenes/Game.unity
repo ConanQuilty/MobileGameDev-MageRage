@@ -289,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3366,6 +3366,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425333834}
   m_CullTransparentMesh: 1
+--- !u!1 &460829358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 460829359}
+  - component: {fileID: 460829360}
+  m_Layer: 0
+  m_Name: TankPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &460829359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460829358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &460829360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460829358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418c31c7cb6b84fe084d141e917e4ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPool
+  prefab: {fileID: 2936833486081541412, guid: 3d226b47503ee4d8ea91464fcd4924f0, type: 3}
+  size: 60
+  player: {fileID: 1452770959}
 --- !u!1 &485005790
 GameObject:
   m_ObjectHideFlags: 0
@@ -5837,6 +5884,100 @@ RectTransform:
   m_AnchoredPosition: {x: -197.9, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1202630699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1202630700}
+  - component: {fileID: 1202630701}
+  m_Layer: 0
+  m_Name: RunnerPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1202630700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202630699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.38598, y: 0.18575, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1202630701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202630699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418c31c7cb6b84fe084d141e917e4ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPool
+  prefab: {fileID: 3053134269330258306, guid: a95c7031df6a44a3b958766c08d51577, type: 3}
+  size: 60
+  player: {fileID: 1452770959}
+--- !u!1 &1215878375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1215878376}
+  - component: {fileID: 1215878377}
+  m_Layer: 0
+  m_Name: GruntPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1215878376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215878375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.38598, y: 0.18575, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1215878377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215878375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418c31c7cb6b84fe084d141e917e4ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPool
+  prefab: {fileID: 329665061815263499, guid: 9fc2469525a5f4742abdfd0e7a17b523, type: 3}
+  size: 60
+  player: {fileID: 1452770959}
 --- !u!1 &1357099568
 GameObject:
   m_ObjectHideFlags: 0
@@ -6988,11 +7129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060bfbb851b6c480a8051280c1aa745b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StressSpawner
-  enemyPrefab: {fileID: -3833331837802105014, guid: 9f310890de1e747b3bcbd69753e2df3b, type: 3}
+  pool: {fileID: 1215878377}
   player: {fileID: 1452770959}
   count: 500
   radius: 10
-  speed: 2
 --- !u!4 &1760474003
 Transform:
   m_ObjectHideFlags: 0
@@ -7308,7 +7448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaef9463513f489e8aaa789b6dc6c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  runLength: 15
+  runLength: 60
 --- !u!114 &2097364070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7413,3 +7553,6 @@ SceneRoots:
   - {fileID: 972620030}
   - {fileID: 1452770959}
   - {fileID: 1760474003}
+  - {fileID: 1215878376}
+  - {fileID: 1202630700}
+  - {fileID: 460829359}

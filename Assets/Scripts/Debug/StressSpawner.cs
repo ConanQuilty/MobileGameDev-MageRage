@@ -1,39 +1,26 @@
 using UnityEngine;
 
+// Debug harness: spawns `count` real Grunts from the pool in rings around the player,
+// so the Thu 12 before/after uses the actual enemy code. Enemies steer themselves.
 public class StressSpawner : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D enemyPrefab;
+    [SerializeField] EnemyPool pool;
     [SerializeField] Transform player;
     [SerializeField] int count = 200;
     [SerializeField] float radius = 10f;
-    [SerializeField] float speed = 2f;
+    bool _spawned;
 
-    Rigidbody2D[] _bodies;
-
-    public void Spawn()
+    public void Spawn()                 // debug "Stress" button
     {
-        if (_bodies != null) return;  // If exists already skip spawn()
-        _bodies = new Rigidbody2D[count];
-
-        // Spawn in 5 rings around player
+        Debug.Log("[Stress] Spawn() Called");
+        if (_spawned) return;
+        _spawned = true;
         for (int i = 0; i < count; i++)
         {
             float a = i * Mathf.PI * 2f / count;
             float r = radius + (i % 5);
-            Vector2 pos = (Vector2)player.position + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r;
-            _bodies[i] = Instantiate(enemyPrefab, pos, Quaternion.identity, transform);
+            pool.Spawn((Vector2)player.position + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r);
         }
-        Debug.Log($"[Stress] spawned {count}");
-    }
-
-    void FixedUpdate()
-    {
-        if (_bodies == null || LifecycleGuard.IsPaused) return;
-        Vector2 target = player.position;
-        for (int i = 0; i < _bodies.Length; i++)
-        {
-            Vector2 dir = (target - _bodies[i].position).normalized;
-            _bodies[i].linearVelocity = dir * speed;
-        }
+        Debug.Log($"[Stress] spawned {count} from pool");
     }
 }
