@@ -15,9 +15,13 @@ public class ResultScreen : MonoBehaviour
     {
         var r = GameManager.LastResult;
         title.SetText(r.won ? "You survived!" : "Defeated");
+        float k = r.kills;
+
         int s = Mathf.FloorToInt(r.timeSurvived);
-        if (s % 60 < 10) detail.SetText("Time {0}:0{1}", (float)(s / 60), (float)(s % 60));
-        else             detail.SetText("Time {0}:{1}", (float)(s / 60), (float)(s % 60));
+        int m = s / 60, sec = s % 60; 
+
+        if (sec < 10) detail.SetText("Time {0:0}:0{1:0}   Kills {2:0}", (float)m, (float)sec, k);
+        else          detail.SetText("Time {0:0}:{1:0}   Kills {2:0}",  (float)m, (float)sec, k);
     }
 
     void Update()

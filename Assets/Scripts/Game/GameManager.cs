@@ -7,6 +7,7 @@ public struct RunResult
     public bool won;
     public float timeSurvived;
     public string cause;
+    public int kills;
 }
 
 public class GameManager : MonoBehaviour
@@ -22,10 +23,21 @@ public class GameManager : MonoBehaviour
     public float Elapsed { get; private set; }
     public float Remaining => Mathf.Max(0f, runLength - Elapsed);
     public event System.Action<State> StateChanged;
+    public int Kills { get; private set; }
+
 
     void Awake() => Instance = this;
-    void OnEnable()  => LifecycleGuard.PausedChanged += OnPausedChanged;
-    void OnDisable() => LifecycleGuard.PausedChanged -= OnPausedChanged;
+    void OnEnable() 
+    { 
+        LifecycleGuard.PausedChanged += OnPausedChanged;
+        Enemy.Killed += OnKilled;
+    }
+
+    void OnDisable()
+    {
+        LifecycleGuard.PausedChanged -= OnPausedChanged;
+        Enemy.Killed -= OnKilled;
+    }
     void Start() => SetState(State.Playing);
 
     void Update()
@@ -41,6 +53,7 @@ public class GameManager : MonoBehaviour
         if (paused && Current == State.Playing) SetState(State.Paused);
         else if (!paused && Current == State.Paused) SetState(State.Playing);
     }
+    
 
     public void Win() => End(State.Won, "none");
     public void Lose(string cause) => End(State.Lost, cause);   // cause: short id, e.g. "hp"
@@ -48,7 +61,7 @@ public class GameManager : MonoBehaviour
     void End(State result, string cause)
     {
         if (Current == State.Won || Current == State.Lost) return;   // end only once
-        LastResult = new RunResult { won = result == State.Won, timeSurvived = Elapsed, cause = cause };
+        LastResult = new RunResult { won = result == State.Won, timeSurvived = Elapsed, cause = cause, kills = Kills };
         SetState(result);
         SceneManager.LoadSceneAsync("Result");
     }
@@ -59,5 +72,7 @@ public class GameManager : MonoBehaviour
         Current = s;
         StateChanged?.Invoke(s);
     }
+
+    void OnKilled(Enemy e) => Kills++;
 }
 
