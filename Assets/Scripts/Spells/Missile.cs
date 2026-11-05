@@ -9,12 +9,12 @@ public class Missile : MonoBehaviour
     Enemy _target;
     int _targetLife; // which "life" of the pooled enemy we aimed at
     Vector2 _dir;
-    int _damage;
+    float _damage;
     float _dieAt;
 
     public Missile Init(MissilePool pool) { _pool = pool; return this; }
 
-    public void Launch(Vector2 from, Enemy target, int damage)
+    public void Launch(Vector2 from, Enemy target, float damage)
     {
         transform.position = from;
         _target = target;

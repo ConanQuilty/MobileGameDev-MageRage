@@ -45,4 +45,13 @@ public class PlayerHealth : MonoBehaviour
             _flashUntil = 0f;
         }
     }
+
+    public void AddMax(int amount)  
+    {
+        maxHealth += amount;
+        Current += amount;
+        Changed?.Invoke(Current, maxHealth);
+    }
+
+    public void AddSafety(float seconds) => invulnerableTime += seconds;
 }

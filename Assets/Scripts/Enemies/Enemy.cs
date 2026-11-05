@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     Transform _target;
     Rigidbody2D _body;
     SpriteRenderer _sprite;
-    int _health;
+    float _health;
     float _slowUntil, _slowFactor = 1f;
 
     public Enemy Init(EnemyPool pool, Transform target)
@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void Hit(int damage)
+    public void Hit(float damage)
     {
         if (_health <= 0) return;
         _health -= damage;

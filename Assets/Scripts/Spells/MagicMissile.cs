@@ -5,7 +5,8 @@ public class MagicMissile : MonoBehaviour
     [SerializeField] MissilePool pool;
     [SerializeField] float cooldown = 0.5f;
     [SerializeField] float range = 9f;
-    [SerializeField] int baseDamage = 2; 
+    [SerializeField] float baseDamage = 2; 
+    [SerializeField] PlayerStats stats;
     float _next;
 
     void Update()
@@ -13,8 +14,8 @@ public class MagicMissile : MonoBehaviour
         if (Time.time < _next) return;
         Enemy target = Nearest();
         if (target == null) return; // nothing in range: try again next frame
-        _next = Time.time + cooldown;
-        pool.Spawn().Launch(transform.position, target, baseDamage);
+        _next = Time.time + stats.Cooldown(cooldown);
+        pool.Spawn().Launch(transform.position, target, stats.Damage(baseDamage)); //stats.Damage(x) Will multiply dmg by the stats multiplyer
     }
 
     Enemy Nearest()
