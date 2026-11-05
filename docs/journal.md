@@ -59,3 +59,22 @@ Added debug menu for debug builds, allows stress testing through enemy spawning 
 - Debug uses the Grunt enemy pool > Pushes it past the pool too
 
 - Coroutine hunt 0 hits; WaveTimer written with Awaitable from the start (template: lab WaveTimer).
+- WaveTimer was written with Awaitable.WaitForSecondsAsync and a CancellationTokenSource linked to Application.exitCancellationToken.Bootstrap loads 
+- Menu with await SceneManager.LoadSceneAsync.
+- Stopping Play mode mid-wave gives no further [Wave] logs or spawns.
+
+GC while spawning (Pixel 6a, Dev build, Autoconnected Player, w05-spawner.data):
+- I added a ProfilerMarker ("EnemyPool.Spawn") so spawn frames can be found by name.
+- Spawn frame 4898 (early in the run): EnemyPool.Spawn 0 B, no Instantiate. PlayerLoop 15.86 ms (under the 16.67 ms budget).
+- The PlayerLoop total on that frame is 147 B, so the spawner is 0 B but something else in the frame still allocates. I haven't identified it yet; the prev capture showed a similar small amount (99 B)
+- Spawn frame 5573 (later, wave 3): EnemyPool.Spawn 176 B. Nothing kills enemies yet, so the Grunt pool (120) empties after about 95 s and Spawn falls back to Instantiate. Makes sense as killing enemies not implemented yet.
+
+Reflection: Pool sizes need better consideration down the line. Could be removing enemies as fast as they're created at one point but likely resoulution is to increase pool size.
+
+Problems encountered:
+- Creating a tmp label for time made 1m 4s show as 1:4 instead of desired 1:04. Fixed by using floats with {0:0}
+- Overlaying huds conflicted with eachother (dev options hud blocked by player hud.) Fixed by unticking Raycast Target on display-only UI.
+- Builds failed due to low space, opened up space by clearing Library/Bee
+
+
+
