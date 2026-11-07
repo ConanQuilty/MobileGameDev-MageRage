@@ -25,6 +25,7 @@ public class ResultScreen : MonoBehaviour
 
     void Update()
     {
+        if (SceneLoader.IsLoading) return; //no navigation mid-load
         var kb = Keyboard.current; 
         if (kb != null && kb.escapeKey.wasPressedThisFrame) OnMenu();
     }

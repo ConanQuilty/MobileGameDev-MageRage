@@ -76,5 +76,37 @@ Problems encountered:
 - Overlaying huds conflicted with eachother (dev options hud blocked by player hud.) Fixed by unticking Raycast Target on display-only UI.
 - Builds failed due to low space, opened up space by clearing Library/Bee
 
+---
+
+*05/11/26*
+Added an auto-firing missile that homes on the nearest enemy in range every 0.5 s (base damage 2), from a prewarmed MissilePool.
+
+- Enemies now keep a shared static list of who’s alive (Enemy.Active), so spells find targets without Find or physics queries. Nearest-enemy search compares squared distances to skip the square root.
+- A Life (not hp) counter on each enemy stops a missile chasing a recycled enemy after its real target died.
+- Kills are counted through a Killed event and shown on the HUD and Result screen.
+
+- For Pool sizing a peak log shows what the size of all pools are post run.
+
+- XP and level-ups. Kills drop pooled XP gems that fly to the mage; each level pauses for a choice.
+
+- Levelling up gives the choices: HP +2, Defence +0.2 s invunerable time, Attack +10%, Speed +15%, and Attack speed +10%, which I split into its own stat.
+- Freezing time: I extended LifecycleGuard with a “hold” counter, so the level-up freeze survives Home > Resume. Before, Resume would have restarted time behind the open panel.
+- Damage as floats: I spotted that % boosts don’t fit whole-number damage. Rounding meant a second Attack pick did nothing, so enemy health and spell damage are now floats.
+
+- Added Fire Orbs and Frost Nova. Orbs circle the mage from level 3, and Nova pulses a slow every 4 s from level 5. Both use distance checks, not physics, to keep the Physics2D cost unchanged for the bottleneck test. The orbs looked too small, so they now size themselves from their hit radius, and the visual always matches the damage area.
+
+---
+
+*07/11/26* 
+_breaking the loader on purpose_
+
+- For the hang test I changed the SceneLoader loop from while (op.progress < 0.9f) to while (!op.isDone). The bar filled and stayed full, and the Game scene never appeared (screenshot: docs/CA2/baseline/loader-hang.png). 
+- When allowSceneActivation = false, Unity stops progress at 0.9 and waits for permission to switch scenes, so isDone never becomes true and the loop never exits, which gives an infinite loading screen. Reverting to progress < 0.9f, then setting allowSceneActivation = true and awaiting the operation fixes it.
+
+- When hitting home mid-load. Tapped Play, pressed Home straight away, waited 5 s, then returned. The load [finished / the loading screen disappeared and Game started]. It survives because the token I pass is Application.exitCancellationToken which only cancels on quit, and nothing in OnApplicationPause cancels it.
+
+- Added if (SceneLoader.IsLoading) return; to PauseMenu and ResultScreen. When pressing Back during the bar did nothing: no pause panel and no jump to Menu.
+
+- What I learned: a loop that waits for “done” can wait forever if something else is holding the operation back. Check what actually changes (progress reaching 0.9), not what you assume will (isDone).
 
 

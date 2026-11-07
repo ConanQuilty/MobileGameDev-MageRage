@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        if (SceneLoader.IsLoading) return; //Don't do mid load
         var kb = Keyboard.current;
         if (kb == null || !kb.escapeKey.wasPressedThisFrame) return; //Was the escape key (back motion on mobile) pressed?
 
