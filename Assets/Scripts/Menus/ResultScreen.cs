@@ -9,7 +9,6 @@ public class ResultScreen : MonoBehaviour
 {
     [SerializeField] TMP_Text title;
     [SerializeField] TMP_Text detail;
-    bool _leaving;
 
     void Start()
     {
@@ -35,8 +34,6 @@ public class ResultScreen : MonoBehaviour
 
     void Go(string scene)
     {
-        if (_leaving) return;                      // ignore double taps
-        _leaving = true;
-        SceneManager.LoadSceneAsync(scene);
+        _ = SceneLoader.Instance.Load(scene, Application.exitCancellationToken);
     }
 }

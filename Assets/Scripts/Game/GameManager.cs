@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         if (Current == State.Won || Current == State.Lost) return;   // end only once
         LastResult = new RunResult { won = result == State.Won, timeSurvived = Elapsed, cause = cause, kills = Kills };
         SetState(result);
-        SceneManager.LoadSceneAsync("Result");
+        _ = SceneLoader.Instance.Load("Result", Application.exitCancellationToken);
     }
 
     void SetState(State s)

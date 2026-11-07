@@ -17,5 +17,5 @@ public class MobileBootstrap : MonoBehaviour
                   $"target {Application.targetFrameRate} fps");
     }
 
-    async Awaitable Start() => await SceneManager.LoadSceneAsync("Menu");
+    async Awaitable Start() => await SceneLoader.Instance.Load("Menu", Application.exitCancellationToken);
 }
