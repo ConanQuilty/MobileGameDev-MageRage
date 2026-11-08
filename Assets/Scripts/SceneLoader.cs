@@ -22,6 +22,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (IsLoading) return;
         IsLoading = true;
+        var sw = System.Diagnostics.Stopwatch.StartNew();
         try
         {
             loadingScreen.SetActive(true);
@@ -42,5 +43,6 @@ public class SceneLoader : MonoBehaviour
             loadingScreen.SetActive(false); //even if cancelled so it's never a stuck loading screen
             IsLoading = false;
         }
+        Debug.Log($"[perf] scene {scene} loaded in {sw.ElapsedMilliseconds} ms");
     }
 }
