@@ -118,3 +118,5 @@ InitTestScene*.unity*
 !/releases/*apk
 
 *ProfilerCaptures/
+
+docs/CA2/Baseline/*.data
