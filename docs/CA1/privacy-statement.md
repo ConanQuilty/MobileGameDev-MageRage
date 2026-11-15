@@ -2,7 +2,7 @@
 
 **Game:** Mage Rage
 **Developer:** Conan Quilty
-**Last updated:** 4 October 2026
+**Last updated:** 15 November 2026
 
 ## Summary
 
@@ -17,7 +17,17 @@ This Game does not collect, store or share any personal data of its own. There a
 
 ## Data stored on your device
 
-The game saves your settings (for example, text size) and game progress locally on your device. This data stays on your device and is never sent to the developer. It is removed when you uninstall the game or clear its data.
+The game saves your settings and game progress locally on your device, using Unity's PlayerPrefs. This data stays on your device and is never sent to the developer. It is removed when you uninstall the game or clear its data.
+
+| Key | Type | What it stores | Saved when |
+|---|---|---|---|
+| `haptics` | int (0/1) | Vibration on or off | You change the setting |
+| `textScale` | float | Text size multiplier | You change the setting |
+| `screenShake` | int (0/1) | Screen shake on or off | You change the setting |
+| `wallet.coins` | int | Coins you have earned | Your coins change, and when the game goes to the background |
+| `wallet.level` | int | Arcane Power upgrade level | You buy an upgrade, and when the game goes to the background |
+
+None of these values identify you. They are game settings and progress only.
 
 ## Data collected by Unity and your platform
 
