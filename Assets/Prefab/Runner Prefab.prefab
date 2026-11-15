@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8351125893713073886}
   - component: {fileID: 311344378052834436}
   - component: {fileID: 3053134269330258306}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Runner Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4110341688437707112}
   - component: {fileID: 4064340501188964626}
   - component: {fileID: 329665061815263499}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grunt Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,4 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871952c608996480e95036e0a7c11817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  LastOrbHit: 0
   type: {fileID: 11400000, guid: 0feb9c52be3e2413d9986a136653f285, type: 2}
