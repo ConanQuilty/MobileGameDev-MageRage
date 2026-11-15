@@ -22,10 +22,13 @@ public class Wallet : MonoBehaviour
 
     public bool TryUpgrade()
     {
+        int cost = NextCost;
         if (Coins < NextCost) return false;
         Coins -= NextCost;
         Level++;
         Changed?.Invoke();
+        Telemetry.Log("upgrade_purchased", ("upgrade_id", "arcane_power"),
+            ("level", Level), ("cost", cost), ("coins_left", Coins));
         return true;
     }
 }

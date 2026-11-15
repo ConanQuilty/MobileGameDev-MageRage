@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public event System.Action<State> StateChanged;
     public int Kills { get; private set; }
     public int RunCoins { get; private set; }
-
+    static int _attempt = 0;
 
     void Awake() => Instance = this;
     void OnEnable() 
@@ -40,7 +40,13 @@ public class GameManager : MonoBehaviour
         LifecycleGuard.PausedChanged -= OnPausedChanged;
         Enemy.Killed -= OnKilled;
     }
-    void Start() => SetState(State.Playing);
+    void Start() 
+    {
+        SetState(State.Playing);
+        _attempt++;
+        Telemetry.Log("level_start", ("level_id", 1), ("attempt", _attempt),
+            ("coins", Wallet.Instance != null ? Wallet.Instance.Coins : 0));
+    }
 
     void Update()
     {
@@ -66,6 +72,12 @@ public class GameManager : MonoBehaviour
         LastResult = new RunResult { won = result == State.Won, timeSurvived = Elapsed, cause = cause, kills = Kills, coins = RunCoins };
         SetState(result);
         Wallet.Instance.Earn(RunCoins);
+        if (result == State.Won)
+        Telemetry.Log("level_complete", ("level_id", 1), ("time_s", Elapsed.ToString("F0")),
+            ("coins_earned", RunCoins), ("score", Kills));
+        else
+        Telemetry.Log("level_fail", ("level_id", 1), ("time_s", Elapsed.ToString("F0")),
+            ("cause", cause), ("coins_earned", RunCoins));
         _ = SceneLoader.Instance.Load("Result", Application.exitCancellationToken);
     }
 
