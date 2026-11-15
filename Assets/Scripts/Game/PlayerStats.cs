@@ -8,8 +8,9 @@ public class PlayerStats : MonoBehaviour
     public float DamageMult { get; private set; } = 1f;
     public float AttackSpeed { get; private set; } = 1f; //1 = base atk speed + 10% attack
     public float SpeedMult  { get; private set; } = 1f;
+    public float ArcaneMult => Wallet.Instance != null ? 1f + 0.15f * Wallet.Instance.Level : 1f; //Upgrade arcane power by shop between runs
 
-    public float Damage(float baseDamage) => baseDamage * DamageMult;   
+    public float Damage(float baseDamage) => baseDamage * DamageMult * ArcaneMult;
     public float Cooldown(float baseSeconds) => baseSeconds / AttackSpeed;
     public float AttackSpeedMult { get; private set; } = 1f; 
 

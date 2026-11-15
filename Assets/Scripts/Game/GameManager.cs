@@ -8,6 +8,7 @@ public struct RunResult
     public float timeSurvived;
     public string cause;
     public int kills;
+    public int coins;
 }
 
 public class GameManager : MonoBehaviour
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public float Remaining => Mathf.Max(0f, runLength - Elapsed);
     public event System.Action<State> StateChanged;
     public int Kills { get; private set; }
+    public int RunCoins { get; private set; }
 
 
     void Awake() => Instance = this;
@@ -61,8 +63,9 @@ public class GameManager : MonoBehaviour
     void End(State result, string cause)
     {
         if (Current == State.Won || Current == State.Lost) return;   // end only once
-        LastResult = new RunResult { won = result == State.Won, timeSurvived = Elapsed, cause = cause, kills = Kills };
+        LastResult = new RunResult { won = result == State.Won, timeSurvived = Elapsed, cause = cause, kills = Kills, coins = RunCoins };
         SetState(result);
+        Wallet.Instance.Earn(RunCoins);
         _ = SceneLoader.Instance.Load("Result", Application.exitCancellationToken);
     }
 
@@ -73,6 +76,10 @@ public class GameManager : MonoBehaviour
         StateChanged?.Invoke(s);
     }
 
-    void OnKilled(Enemy e) => Kills++;
+    void OnKilled(Enemy e) 
+    {
+        Kills++;
+        RunCoins += e.Type.coins;
+    }
 }
 

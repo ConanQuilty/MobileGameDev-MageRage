@@ -11,4 +11,5 @@ public class EnemyType : ScriptableObject
     public float scale = 0.6f;
     public Color color = Color.red;
     public int xp = 1; 
+    public int coins = 1;
 }
