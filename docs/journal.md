@@ -109,4 +109,23 @@ _breaking the loader on purpose_
 
 - What I learned: a loop that waits for “done” can wait forever if something else is holding the operation back. Check what actually changes (progress reaching 0.9), not what you assume will (isDone).
 
+*8/11/26* 
+- Add HideUIAfterSeconds.cs to create dissapearing hints on game start.
 
+*11/11/26*
+- Created Improved sprites for quick and tank Goblins. Sprite for fireball, magic missile. Sprites for extra tiles like mud dirt and grass.
+
+*14/11/26*
+- Added the economy loop: kills earn coins (Grunt 1, Runner 1, Tank 5), banked once at the end of the run so it's one save per run instead of one per kill. Coins buy Arcane Power on the Result screen (+15% spell damage per level, cost 100 × 1.5^level).
+- Wallet saves on every change and on OnApplicationPause (not OnApplicationQuit, which Android often skips). Force-stop test: coins and level came back after relaunch.
+- Cut the big spells (Bomb / Lightning / Super Mage) and the test store to make the CA2 deadline, following my MDA cut order (extra spells go first). Planned for CA3.
+- Problems: LevelUpScreen null reference on the phone, caused by an empty Unlocks slot after editing the Game HUD. Fixed by refilling the slot and saving the scene.
+
+*15/11/26*
+- Final sprint before release.
+- Implemented the sprites made previously, along with updating tile map.
+- Implemented the telemetry reporting. Event Map lies in Economy_Telemetry_map.md
+- Bottleneck revisit: at 500+ enemies Physics2D.Simulate was 6.08 ms. Put enemies on an Enemy layer and turned off Enemy × Enemy collisions. Frame time stays capped at 16.7 ms. Side effect: enemies clump and Fire Orbs kill them in bursts.
+- Updated the privacy statement to include new additions
+- Clean up consol. Removed per-touch debug logs,
+- Recorded the gameplay video
