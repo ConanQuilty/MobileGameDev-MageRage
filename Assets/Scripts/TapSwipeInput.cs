@@ -28,14 +28,11 @@ public class TapSwipeInput : MonoBehaviour
             Vector2 d = t.screenPosition - t.startScreenPosition;
             double held = t.time - t.startTime;
 
-            Debug.Log($"[Touch] moved {d.magnitude:F0}px (need {px:F0}) held {held:F2}s (max {swipeMaxTime:F2})");
-
             if (d.magnitude >= px) {
-                if (held <= swipeMaxTime) {Swiped?.Invoke(d.normalized); Debug.Log("Swiped");}
+                if (held <= swipeMaxTime) { Swiped?.Invoke(d.normalized); }
                 }
             else if (held < tapMax)
             {
-                Debug.Log("Tapped");
                 Tapped?.Invoke(t.screenPosition);
             }
         }
